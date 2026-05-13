@@ -1,6 +1,5 @@
 [web_page](https://shain120.github.io/_wp/)
 
-# Cyberpunk Portfolio
 
 A modern, responsive portfolio website with a striking visual aesthetic inspired by Persona 5. Built with React, Tailwind CSS, and Framer Motion.
 
