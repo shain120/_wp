@@ -12,7 +12,7 @@ export const portfolioData: PortfolioData = {
   ],
   hero: {
     eyebrow: "TAKE YOUR TIME",
-    name: "黃冠勛 SHAIN",
+    name: "黃冠勝 SHAIN",
     title: "Wireless Network Control Researcher",
     description:
       "I focus on AI applications, wireless network control, and LLM-driven system design. My recent work explores how large language models can improve IEEE 802.11ax contention control in dynamic environments. I also enjoy building practical systems that combine software engineering, machine learning, and real-world deployment.",
