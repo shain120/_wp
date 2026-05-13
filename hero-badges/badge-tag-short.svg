@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" fill="none">
+  <g transform="translate(10 10)" opacity=".72">
+    <polygon points="48,40 106,24 370,24 436,31 478,66 456,116 392,128 86,128 48,108 30,80" fill="#000"/>
+    <polygon points="104,0 212,6 194,36 88,32" fill="#000"/>
+    <polygon points="420,26 494,34 470,136 404,126" fill="#000"/>
+    <polygon points="0,70 46,38 66,42 50,80 66,110 44,118" fill="#000"/>
+  </g>
+
+  <polygon
+    points="48,40 106,24 370,24 436,31 478,66 456,116 392,128 86,128 48,108 30,80"
+    fill="#fff"
+    stroke="#000"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+  <polygon
+    points="58,47 113,31 362,31 428,38 464,70 442,110 384,120 93,120 58,104 43,80"
+    fill="#090909"
+    stroke="#000"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+
+  <polygon
+    points="104,0 212,6 194,36 88,32"
+    fill="#fff"
+    stroke="#000"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+  <polygon
+    points="420,26 494,34 470,136 404,126"
+    fill="#fff"
+    stroke="#000"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+  <polygon
+    points="0,70 46,38 66,42 50,80 66,110 44,118"
+    fill="#fff"
+    stroke="#000"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+</svg>

@@ -1,0 +1,44 @@
+<svg width="900" height="720" viewBox="0 0 900 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="720" fill="#D8D1C2"/>
+  <rect x="28" y="22" width="844" height="656" fill="#FCF8ED" stroke="#181818" stroke-width="7"/>
+  <rect x="44" y="38" width="812" height="624" fill="none" stroke="#7C7C7C" stroke-width="2"/>
+  <path d="M758 24H872V138L842 112L818 138L792 112L768 134L758 24Z" fill="#121212"/>
+  <path d="M205 112C217 90 236 76 260 72C285 68 306 75 321 93" stroke="#A8A8A8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M205 112C216 123 225 136 231 150C237 164 240 177 240 188" stroke="#A8A8A8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M321 93C334 104 345 118 352 134C358 149 362 165 362 182" stroke="#A8A8A8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M694 112C682 90 663 76 639 72C614 68 593 75 578 93" stroke="#A8A8A8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M694 112C683 123 674 136 668 150C662 164 659 177 659 188" stroke="#A8A8A8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M578 93C565 104 554 118 547 134C541 149 537 165 537 182" stroke="#A8A8A8" stroke-width="6" stroke-linecap="round"/>
+  <text x="450" y="118" text-anchor="middle" fill="#1C1C1C" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="4">BEST PAPER</text>
+  <text x="450" y="162" text-anchor="middle" fill="#1C1C1C" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="60" font-weight="900">AWARD</text>
+
+  <text x="450" y="230" text-anchor="middle" fill="#2A2A2A" font-family="Arial, Helvetica, sans-serif" font-size="24">9th EAI International Conference on</text>
+  <text x="450" y="275" text-anchor="middle" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Smart Grid and Internet of Things</text>
+  <text x="450" y="328" text-anchor="middle" fill="#2A2A2A" font-family="Arial, Helvetica, sans-serif" font-size="24">December 6 - 7, 2025 | Taichung, Taiwan</text>
+
+  <text x="450" y="402" text-anchor="middle" fill="#2A2A2A" font-family="Arial, Helvetica, sans-serif" font-size="22">Presented to:</text>
+  <text x="450" y="446" text-anchor="middle" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Guan-Sheng Huang,</text>
+  <text x="450" y="486" text-anchor="middle" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Chih-Heng Ke,</text>
+  <text x="450" y="526" text-anchor="middle" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Chong-Yi Yang,</text>
+  <text x="450" y="566" text-anchor="middle" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Yeong-Sheng Chen</text>
+
+  <rect x="96" y="578" width="708" height="2" fill="#C9C1B0"/>
+
+  <text x="450" y="606" text-anchor="middle" fill="#2A2A2A" font-family="Arial, Helvetica, sans-serif" font-size="22">For the paper entitled:</text>
+  <text x="450" y="642" text-anchor="middle" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">An LLM-Based Approach to Improving Throughput</text>
+  <text x="450" y="672" text-anchor="middle" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">and Reducing Collisions in IEEE 802.11 Wireless Networks</text>
+
+  <g transform="translate(112 584)">
+    <path d="M14 60C30 44 44 40 58 26C70 14 74 4 95 4C78 18 77 32 89 45C98 55 112 60 125 60C106 73 88 78 69 78C43 78 24 71 14 60Z" fill="#4A4A4A"/>
+    <text x="82" y="74" text-anchor="middle" fill="#4A4A4A" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="34">EAI</text>
+    <text x="82" y="95" text-anchor="middle" fill="#666666" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2">INNOVATING RESEARCH</text>
+  </g>
+
+  <g transform="translate(560 588)">
+    <rect x="0" y="6" width="22" height="70" fill="#666666"/>
+    <rect x="32" y="6" width="22" height="70" fill="#666666"/>
+    <rect x="64" y="6" width="22" height="70" fill="#666666"/>
+    <rect x="98" y="6" width="142" height="70" fill="#666666"/>
+    <text x="170" y="58" text-anchor="middle" fill="#FCF8ED" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="52">SGIoT</text>
+  </g>
+</svg>
