@@ -152,8 +152,8 @@ export const portfolioData: PortfolioData = {
         recipients: "Guan-Sheng Huang, Chih-Heng Ke, Chong-Yi Yang, Yeong-Sheng Chen",
         summary:
           "Received the Best Paper Award at SGIoT 2025 for the wireless contention-control study, highlighting the practical value of LLM-guided decision strategies in IEEE 802.11 environments.",
-        image: "/awards/best-paper-award-clean.svg",
-        links: [{ label: "Camera-ready PDF", href: "/papers/archive_file_cameraready.pdf" }],
+        image: import.meta.env.BASE_URL + "awards/best-paper-award-clean.svg",
+        links: [{ label: "Camera-ready PDF", href: import.meta.env.BASE_URL + "papers/archive_file_cameraready.pdf" }],
       },
     ],
   },
@@ -179,7 +179,7 @@ export const portfolioData: PortfolioData = {
           "The first published version of this research line appeared in mid-2025, establishing the core LLM-based direction for improving throughput and reducing collisions in IEEE 802.11 wireless environments.",
         tone: "paper",
         tags: ["2025 / 6", "Conference Paper", "Wireless Control", "LLM Research"],
-        links: [{ label: "Publication PDF", href: "/papers/20250315.pdf" }],
+        links: [{ label: "Publication PDF", href: import.meta.env.BASE_URL + "papers/20250315.pdf" }],
       },
       {
         date: "2025 / 12",
@@ -191,7 +191,7 @@ export const portfolioData: PortfolioData = {
           "The December 2025 conference-stage publication reached the camera-ready milestone and was further recognized with the Best Paper Award at the 9th EAI International Conference on Smart Grid and Internet of Things.",
         tone: "upcoming",
         tags: ["2025 / 12", "Best Paper Award", "Camera-ready", "SGIoT 2025"],
-        links: [{ label: "Camera-ready PDF", href: "/papers/archive_file_cameraready.pdf" }],
+        links: [{ label: "Camera-ready PDF", href: import.meta.env.BASE_URL + "papers/archive_file_cameraready.pdf" }],
       },
       {
         date: "IN PREP",

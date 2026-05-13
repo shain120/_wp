@@ -29,7 +29,7 @@ export default function NeonButton({
       <img
         aria-hidden="true"
         alt=""
-        src="/hero-badges/badge-action.svg"
+        src={import.meta.env.BASE_URL + "hero-badges/badge-action.svg"}
         className="hero-action-button-frame"
       />
       <span className="hero-action-button-label">{children}</span>

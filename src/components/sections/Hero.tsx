@@ -12,23 +12,23 @@ interface HeroTagBadge {
 
 const heroTagBadgeMap: Record<string, HeroTagBadge> = {
   Python: {
-    asset: "/hero-badges/badge-tag-short.svg",
+    asset: import.meta.env.BASE_URL + "hero-badges/badge-tag-short.svg",
     size: "short",
   },
   "LLM Systems": {
-    asset: "/hero-badges/badge-tag-medium.svg",
+    asset: import.meta.env.BASE_URL + "hero-badges/badge-tag-medium.svg",
     size: "medium",
   },
   "AI Applications": {
-    asset: "/hero-badges/badge-tag-medium.svg",
+    asset: import.meta.env.BASE_URL + "hero-badges/badge-tag-medium.svg",
     size: "medium",
   },
   "Wireless Control": {
-    asset: "/hero-badges/badge-tag-medium.svg",
+    asset: import.meta.env.BASE_URL + "hero-badges/badge-tag-medium.svg",
     size: "medium",
   },
   "IEEE 802.11ax": {
-    asset: "/hero-badges/badge-tag-long.svg",
+    asset: import.meta.env.BASE_URL + "hero-badges/badge-tag-long.svg",
     size: "long",
   },
 };
