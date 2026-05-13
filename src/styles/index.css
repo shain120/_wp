@@ -1,0 +1,1439 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "P5Hatty";
+  src: url("../../p5hatty.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Expose";
+  src: url("../../Expose-Regular.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "P5Menu";
+  src: url("../../Persona5MenuFontPrototype-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OptimaNova";
+  src: url("../assets/fonts/optima-nova-black.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "EarwigFactory";
+  src: url("../assets/fonts/earwig-factory-rg.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "P5Ui";
+  src:
+    local("Franklin Gothic Demi Cond"),
+    local("Franklin Gothic Demi"),
+    local("Franklin Gothic Heavy"),
+    local("Franklin Gothic Medium");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "P5Slab";
+  src:
+    local("Cooper Black"),
+    local("Rockwell Extra Bold"),
+    local("Rockwell Bold"),
+    local("Rockwell");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "P5Serif";
+  src:
+    local("Arsenal"),
+    local("Noto Serif TC"),
+    local("Times New Roman");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "P5SansTC";
+  src:
+    local("Noto Sans TC"),
+    local("Microsoft JhengHei");
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base font-sans text-white antialiased;
+    font-family: "OptimaNova", "P5SansTC", "Segoe UI", sans-serif;
+    background-image:
+      linear-gradient(128deg, rgba(255, 255, 255, 0.02) 0 19%, transparent 19% 100%),
+      linear-gradient(115deg, transparent 0 58%, rgba(213, 18, 27, 0.14) 58% 79%, transparent 79% 100%),
+      linear-gradient(180deg, #070707 0%, #101010 42%, #090909 100%);
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: rgba(213, 18, 27, 0.35);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #f4ce4f, #d5121b);
+    border-radius: 999px;
+  }
+
+  @media (pointer: fine) {
+    html.custom-cursor-ready,
+    html.custom-cursor-ready body,
+    html.custom-cursor-ready body * {
+      cursor: url("/persona-5-animated-small/NORMAL.png") 0 0, auto !important;
+    }
+
+    html.custom-cursor-ready.cursor-mode-active,
+    html.custom-cursor-ready.cursor-mode-active body,
+    html.custom-cursor-ready.cursor-mode-active body * {
+      cursor: url("/persona-5-animated-small/LINK%20SELECT.png") 12 12, pointer !important;
+    }
+
+    html.custom-cursor-ready.cursor-mode-text,
+    html.custom-cursor-ready.cursor-mode-text body,
+    html.custom-cursor-ready.cursor-mode-text body * {
+      cursor: url("/persona-5-animated-small/TEXT%20SELECT.png") 16 16, text !important;
+    }
+
+    html.custom-cursor-ready.cursor-mode-drag,
+    html.custom-cursor-ready.cursor-mode-drag body,
+    html.custom-cursor-ready.cursor-mode-drag body * {
+      cursor: url("/persona-5-animated-small/MOVE.png") 16 16, move !important;
+    }
+  }
+}
+
+@layer components {
+  .p5-stage-backdrop {
+    @apply absolute inset-0;
+    background:
+      linear-gradient(126deg, transparent 0 15%, rgba(255, 255, 255, 0.08) 15% 15.6%, transparent 15.6% 100%),
+      linear-gradient(116deg, transparent 0 57%, rgba(213, 18, 27, 0.95) 57% 82%, transparent 82% 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.12)),
+      linear-gradient(180deg, #090909 0%, #131313 48%, #090909 100%);
+  }
+
+  .p5-stage-star-orbit {
+    @apply absolute;
+    left: auto;
+    right: clamp(3rem, 10vw, 12rem);
+    top: clamp(10rem, 22vh, 14rem);
+    width: min(31vw, 27rem);
+    height: min(31vw, 27rem);
+    opacity: 0.42;
+    animation: orbitFloat 8s ease-in-out infinite;
+  }
+
+  .p5-stage-orbit-star {
+    @apply absolute;
+    clip-path: polygon(50% 0, 61% 35%, 98% 35%, 69% 57%, 80% 92%, 50% 71%, 20% 92%, 31% 57%, 2% 35%, 39% 35%);
+    filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 0.72));
+    animation: orbitSpin 26s linear infinite;
+  }
+
+  .p5-stage-orbit-star::before,
+  .p5-stage-orbit-star::after {
+    content: "";
+    @apply absolute inset-0;
+    clip-path: polygon(50% 0, 61% 35%, 98% 35%, 69% 57%, 80% 92%, 50% 71%, 20% 92%, 31% 57%, 2% 35%, 39% 35%);
+  }
+
+  .p5-stage-orbit-star::before {
+    inset: 11%;
+  }
+
+  .p5-stage-orbit-star::after {
+    inset: 24%;
+  }
+
+  .p5-stage-orbit-star--hero {
+    left: 7%;
+    top: 6%;
+    width: 15rem;
+    height: 15rem;
+    transform: rotate(-12deg);
+    animation-duration: 30s;
+  }
+
+  .p5-stage-orbit-star--1 {
+    right: 10%;
+    top: 6%;
+    width: 8.5rem;
+    height: 8.5rem;
+    transform: rotate(8deg);
+    animation-duration: 22s;
+  }
+
+  .p5-stage-orbit-star--2 {
+    left: 20%;
+    top: 52%;
+    width: 6.2rem;
+    height: 6.2rem;
+    transform: rotate(-10deg);
+    animation-duration: 18s;
+  }
+
+  .p5-stage-orbit-star--3 {
+    right: 2%;
+    top: 42%;
+    width: 6.6rem;
+    height: 6.6rem;
+    transform: rotate(12deg);
+    animation-duration: 16s;
+  }
+
+  .p5-stage-orbit-star--4 {
+    left: 40%;
+    top: 44%;
+    width: 5.3rem;
+    height: 5.3rem;
+    transform: rotate(-18deg);
+    animation-duration: 20s;
+  }
+
+  .p5-stage-orbit-star--5 {
+    left: 10%;
+    bottom: 8%;
+    width: 4.9rem;
+    height: 4.9rem;
+    transform: rotate(6deg);
+    animation-duration: 15s;
+  }
+
+  .p5-stage-orbit-star--6 {
+    right: 18%;
+    bottom: 6%;
+    width: 4.1rem;
+    height: 4.1rem;
+    transform: rotate(-14deg);
+    animation-duration: 17s;
+  }
+
+  .p5-stage-orbit-star--red {
+    background: #000000;
+  }
+
+  .p5-stage-orbit-star--red::before {
+    background: #d5121b;
+  }
+
+  .p5-stage-orbit-star--red::after {
+    background: #000000;
+  }
+
+  .p5-stage-orbit-star--white {
+    background: #000000;
+  }
+
+  .p5-stage-orbit-star--white::before {
+    background: #ffffff;
+  }
+
+  .p5-stage-orbit-star--white::after {
+    background: #000000;
+  }
+
+  .p5-stage-orbit-star--ink {
+    background: #000000;
+    opacity: 0.82;
+  }
+
+  .p5-stage-orbit-star--ink::before {
+    background: #424242;
+  }
+
+  .p5-stage-orbit-star--ink::after {
+    background: #101010;
+  }
+
+  .p5-stage-speedlines {
+    @apply absolute opacity-40;
+    background-image: repeating-linear-gradient(
+      -64deg,
+      rgba(255, 255, 255, 0.78) 0 2px,
+      rgba(255, 255, 255, 0) 2px 20px
+    );
+    animation: stageLineDrift 18s linear infinite;
+  }
+
+  .p5-stage-speedlines--left {
+    left: -8rem;
+    top: 10rem;
+    width: 28rem;
+    height: 38rem;
+    clip-path: polygon(0 0, 100% 8%, 62% 100%, 0 82%);
+    transform: rotate(-12deg);
+  }
+
+  .p5-stage-speedlines--right {
+    right: -7rem;
+    bottom: 6rem;
+    width: 26rem;
+    height: 22rem;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 84%);
+    transform: rotate(10deg);
+    opacity: 0.22;
+    animation-duration: 22s;
+  }
+
+  .p5-stage-halftone {
+    @apply absolute opacity-[0.18];
+    left: -7rem;
+    top: 5rem;
+    width: 26rem;
+    height: 20rem;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0 1.25px, transparent 1.25px);
+    background-size: 16px 16px;
+    clip-path: polygon(0 0, 100% 0, 68% 100%, 0 72%);
+    transform: rotate(-13deg);
+    animation: stagePulse 6s ease-in-out infinite;
+  }
+
+  .p5-stage-shard {
+    @apply absolute border-4 border-black shadow-p5;
+  }
+
+  .p5-stage-shard--red-main {
+    right: -7rem;
+    top: 3.5rem;
+    width: 28rem;
+    height: 14rem;
+    background: #d5121b;
+    clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 78%);
+    transform: rotate(16deg);
+  }
+
+  .p5-stage-shard--paper-frame {
+    right: 12%;
+    top: 5.5rem;
+    width: 18rem;
+    height: 13rem;
+    border-color: rgba(255, 255, 255, 0.78);
+    background: transparent;
+    clip-path: polygon(12% 0, 100% 0, 100% 88%, 0 100%, 0 18%);
+    transform: rotate(14deg);
+  }
+
+  .p5-stage-shard--ink-ribbon {
+    left: 40%;
+    top: 4.8rem;
+    width: 17rem;
+    height: 2.9rem;
+    background: #000000;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transform: rotate(-16deg);
+  }
+
+  .p5-stage-shard--paper-chip {
+    left: 11%;
+    bottom: 7rem;
+    width: 8.6rem;
+    height: 8.6rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.16);
+    clip-path: polygon(0 0, 100% 22%, 72% 100%, 0 78%);
+    transform: rotate(18deg);
+  }
+
+  .p5-left-menu-panel {
+    @apply absolute;
+    left: -0.5rem;
+    top: 3.5rem;
+    width: 15.5rem;
+    height: 35rem;
+    opacity: 0.96;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 16%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.9));
+    clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%, 0 8%);
+    box-shadow: 14px 14px 0 rgba(0, 0, 0, 0.82);
+  }
+
+  .p5-left-menu-panel::before {
+    content: "";
+    @apply absolute left-0 top-0 h-full w-full opacity-30;
+    background-image: repeating-linear-gradient(
+      -68deg,
+      rgba(255, 255, 255, 0.9) 0 2px,
+      rgba(255, 255, 255, 0) 2px 20px
+    );
+    clip-path: polygon(0 0, 100% 0, 34% 100%, 0 100%);
+  }
+
+  .p5-left-menu-brand {
+    @apply relative z-10 inline-flex border-[4px] border-black bg-black px-5 py-3 text-2xl uppercase text-white;
+    font-family: "P5Slab", "P5Ui", "P5SansTC", sans-serif;
+    letter-spacing: 0.06em;
+    margin-left: 0.4rem;
+    transform: skewX(-16deg) rotate(-2deg);
+    box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.86);
+    text-shadow: 3px 3px 0 rgba(213, 18, 27, 0.65);
+  }
+
+  .p5-left-menu-system {
+    @apply relative z-10 mt-3 inline-flex border-[3px] border-black bg-paper px-4 py-2 text-sm uppercase text-black;
+    margin-left: 4.6rem;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    transform: skewX(-18deg) rotate(-8deg);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.84);
+  }
+
+  .p5-left-menu-link {
+    @apply relative isolate inline-flex min-h-[3.85rem] items-center border-[3px] border-black px-5 py-3 text-[1.05rem] uppercase leading-none transition;
+    font-family: "P5Menu", "P5Ui", "P5SansTC", sans-serif;
+    font-size: 1.08rem;
+    letter-spacing: 0.05em;
+    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 8% 50%);
+  }
+
+  .p5-left-menu-link:hover {
+    transform: translateX(8px) rotate(0deg) !important;
+  }
+
+  .p5-left-menu-link-shadow {
+    @apply absolute inset-0 z-[-2] bg-black;
+    clip-path: inherit;
+    transform: translate(10px, 10px);
+  }
+
+  .p5-left-menu-link-cut {
+    @apply absolute left-4 top-1/2 h-[60%] w-5 -translate-y-1/2 border-r-[3px] border-black/90;
+    clip-path: polygon(0 0, 100% 16%, 74% 100%, 0 84%);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .p5-left-menu-link-label {
+    @apply relative z-10 inline-flex items-center;
+    padding-left: 1.15rem;
+    color: #ffffff;
+    font-weight: 700;
+    -webkit-text-stroke: 0;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.92);
+  }
+
+  .p5-left-menu-link:not(.is-active) {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 22%),
+      linear-gradient(180deg, #151515 0%, #060606 100%);
+    color: #ffffff;
+  }
+
+  .p5-left-menu-link:not(.is-active) .p5-left-menu-link-label {
+    color: #ffffff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.94);
+  }
+
+  .p5-left-menu-link.is-active {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 24%),
+      linear-gradient(180deg, #181818 0%, #040404 100%);
+    border-color: #f4efe5;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+
+  .p5-left-menu-link.is-active .p5-left-menu-link-label {
+    color: #ffffff;
+    text-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.96),
+      0 0 10px rgba(255, 255, 255, 0.12);
+  }
+
+  .p5-left-menu-link.is-active .p5-left-menu-link-cut {
+    border-right-color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .p5-left-menu-link.is-active::after,
+  .p5-left-menu-link:not(.is-active)::after {
+    content: "";
+    @apply absolute right-5 top-1/2 h-[4px] w-10 -translate-y-1/2;
+    transform: translateY(-50%) skewX(-30deg);
+  }
+
+  .p5-left-menu-link.is-active::after {
+    background: #f4efe5;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  }
+
+  .p5-left-menu-link:not(.is-active)::after {
+    background: #d5121b;
+  }
+
+  .noise-overlay {
+    @apply pointer-events-none fixed inset-0 z-[2] opacity-[0.11];
+    background-image:
+      radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.85) 0 1px, transparent 1px),
+      radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1px),
+      radial-gradient(circle at 72% 44%, rgba(213, 18, 27, 0.5) 0 1px, transparent 1px);
+    background-size: 20px 20px, 26px 26px, 34px 34px;
+  }
+
+  .scanline-overlay {
+    @apply pointer-events-none fixed inset-0 z-[2] overflow-hidden opacity-20;
+  }
+
+  .scanline-overlay::before {
+    content: "";
+    @apply absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-p5red/20 via-white/0 to-transparent;
+    animation: scan 7s linear infinite;
+  }
+
+  .glass-panel {
+    @apply relative overflow-hidden border-4 border-black bg-panel shadow-p5;
+    clip-path: polygon(0 0, 96% 0, 100% 10%, 100% 100%, 5% 100%, 0 92%);
+  }
+
+  .section-shell {
+    @apply glass-panel px-6 py-7 sm:px-8 sm:py-8 lg:px-10;
+    background-image:
+      linear-gradient(140deg, rgba(255, 255, 255, 0.04), transparent 44%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.22));
+  }
+
+  .section-shell::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 border border-white/5;
+  }
+
+  .section-shell::after {
+    content: "";
+    @apply pointer-events-none absolute right-8 top-0 h-6 w-28 bg-p5red;
+    transform: skewX(-25deg);
+  }
+
+  .section-kicker {
+    @apply inline-flex items-center gap-2 border-2 border-black bg-p5yellow px-4 py-2 text-lg uppercase tracking-[0.1em] text-black;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: none;
+    letter-spacing: 0.06em;
+    font-size: 0.98rem;
+    transform: rotate(-4deg);
+  }
+
+  .section-title {
+    @apply mt-4 max-w-3xl text-4xl leading-[0.95] text-white sm:text-5xl lg:text-6xl;
+    font-family: "P5Slab", "P5Ui", "P5SansTC", sans-serif;
+    letter-spacing: 0.02em;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.6);
+  }
+
+  .section-copy {
+    @apply mt-4 max-w-3xl text-base leading-relaxed text-white/85 sm:text-lg;
+    font-family: "OptimaNova", "P5SansTC", "Segoe UI", sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  .glow-text {
+    text-shadow: 4px 4px 0 rgba(213, 18, 27, 0.7);
+  }
+
+  .terminal-input {
+    @apply w-full rounded-none border-4 border-black bg-paper px-4 py-3 text-base text-black placeholder:text-black/50 outline-none transition;
+    font-family: "OptimaNova", "P5SansTC", "Segoe UI", sans-serif;
+  }
+
+  .terminal-input:focus {
+    @apply border-p5red bg-white shadow-p5;
+  }
+
+  .chip {
+    @apply inline-flex items-center border-2 border-black bg-paper px-4 py-2 text-base uppercase tracking-[0.06em] text-black;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+  }
+
+  .chip:hover {
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.82);
+  }
+
+  .tech-badge {
+    @apply inline-flex min-h-[38px] items-center border-2 border-black bg-p5red px-4 py-2 text-sm uppercase text-white;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.9);
+    clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+  }
+
+  .p5-red-readable {
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+  }
+
+  .p5-black-readable {
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+  }
+
+  .p5-readable-label {
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 900;
+    font-size: clamp(0.84rem, 0.16vw + 0.82rem, 0.98rem);
+    letter-spacing: 0.055em;
+    line-height: 1.08;
+    text-transform: uppercase;
+  }
+
+  .p5-readable-label--red {
+    color: #b10f17;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.14),
+      0 1px 1px rgba(0, 0, 0, 0.18);
+  }
+
+  .p5-readable-label--ink {
+    color: #111111;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .hero-action-button {
+    @apply relative inline-flex items-center justify-center overflow-visible transition;
+    font-family: "OptimaNova", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.025em;
+    width: clamp(15.5rem, 23vw, 18.75rem);
+    min-height: 0;
+    padding: 0;
+    background: transparent !important;
+    color: #ffffff;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .hero-action-button-frame {
+    @apply block h-auto w-full;
+    pointer-events: none;
+  }
+
+  .hero-action-button--primary,
+  .hero-action-button--secondary {
+    color: #ffffff !important;
+  }
+
+  .hero-action-button-label {
+    @apply absolute inset-0 z-10 flex items-center justify-center text-center uppercase;
+    padding: 0 3.9rem 0 3.35rem;
+    transform: translate(-0.08rem, 0.04rem);
+    -webkit-text-stroke: 0;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.85);
+    font-size: clamp(1.05rem, 0.55vw + 0.95rem, 1.22rem);
+    white-space: nowrap;
+  }
+
+  .hero-action-button--primary .hero-action-button-label,
+  .hero-action-button--secondary .hero-action-button-label {
+    color: #ffffff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.85);
+  }
+
+  .hero-action-button-banner {
+    display: none;
+  }
+
+  .hero-action-button-cut {
+    display: none;
+  }
+
+  .hero-action-button-tail {
+    display: none;
+  }
+
+  .hero-tag-chip {
+    @apply relative inline-flex w-full items-center justify-center;
+    font-family: "OptimaNova", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    min-height: 0;
+    padding: 0;
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .hero-tag-chip--short {
+    width: 100%;
+  }
+
+  .hero-tag-chip--medium {
+    width: 100%;
+  }
+
+  .hero-tag-chip--long {
+    width: 100%;
+  }
+
+  .hero-tag-chip-frame {
+    @apply block h-auto w-full;
+    pointer-events: none;
+  }
+
+  .hero-tag-chip-label {
+    @apply absolute inset-0 z-10 flex items-center justify-center text-center;
+    padding: 0 1.9rem 0 1.7rem;
+    transform: translate(-0.05rem, 0.03rem);
+    -webkit-text-stroke: 0;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.88);
+    font-size: clamp(0.92rem, 0.35vw + 0.82rem, 1.02rem);
+    white-space: nowrap;
+  }
+
+  .hero-tag-chip-banner,
+  .hero-tag-chip-cut,
+  .hero-tag-chip-tail {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .hero-action-button {
+      width: min(100%, 17.75rem);
+    }
+
+    .hero-action-button-label {
+      padding: 0 3.25rem 0 2.8rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-tag-chip--short,
+    .hero-tag-chip--medium,
+    .hero-tag-chip--long {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .hero-tag-chip-label {
+      padding: 0 1.7rem 0 1.45rem;
+      font-size: 0.82rem;
+    }
+  }
+
+  .p5-note-link {
+    @apply flex min-h-[76px] items-center border-2 border-black bg-black pl-8 pr-10 py-3 text-base uppercase leading-[1.15] text-white transition hover:-translate-y-1 hover:bg-p5red;
+    font-family: "P5Menu", "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    word-break: break-word;
+    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 8% 50%);
+  }
+
+  .p5-note-link:hover {
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.88);
+  }
+
+  .research-post-meta {
+    @apply inline-flex items-center border-2 border-black bg-paper px-3 py-1.5 text-sm uppercase text-black;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+  }
+
+  .research-post-meta--light {
+    @apply bg-p5yellow text-black;
+  }
+
+  .research-post-tag {
+    @apply inline-flex items-center border-2 border-white/15 bg-white/10 px-3 py-1.5 text-sm uppercase text-white;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+  }
+
+  .research-post-tag--light {
+    @apply border-black/20 bg-black/10 text-white;
+  }
+
+  .research-post-link {
+    @apply inline-flex items-center gap-2 border-2 border-black px-4 py-2 text-sm uppercase transition hover:-translate-y-1;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+  }
+
+  .research-post-link--primary {
+    @apply bg-p5yellow text-black;
+  }
+
+  .research-post-link--secondary {
+    @apply bg-paper text-black;
+  }
+
+  .publication-timeline {
+    @apply relative grid gap-5;
+  }
+
+  .publication-timeline::before {
+    content: "";
+    @apply absolute bottom-4 top-4 hidden w-1 rounded-full bg-black/20 sm:block;
+    left: 5.1rem;
+  }
+
+  .publication-timeline-item {
+    @apply relative grid gap-3 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:gap-4;
+  }
+
+  .publication-timeline-rail {
+    @apply relative flex items-start gap-3 sm:block;
+  }
+
+  .publication-timeline-dot {
+    @apply mt-1.5 inline-flex h-5 w-5 shrink-0 rounded-full border-4 border-black bg-p5red shadow-p5;
+  }
+
+  .publication-timeline-date {
+    @apply inline-flex items-center border-2 border-black bg-p5yellow px-3 py-1.5 text-sm uppercase text-black;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+    transform: rotate(-3deg);
+  }
+
+  .publication-timeline-card {
+    @apply relative;
+  }
+
+  .publication-timeline-card::before {
+    content: "";
+    @apply pointer-events-none absolute -left-4 top-7 hidden h-1 w-6 bg-black/70 sm:block;
+    transform: skewX(-24deg);
+  }
+
+  .award-feature-grid {
+    @apply grid gap-6 xl:grid-cols-[minmax(340px,0.9fr)_minmax(0,1.1fr)];
+  }
+
+  .award-certificate-stage {
+    @apply relative overflow-hidden border-4 border-black bg-[#e8e0cf] p-3 shadow-p5;
+    clip-path: polygon(0 0, 96% 0, 100% 10%, 100% 100%, 6% 100%, 0 92%);
+    background-image:
+      linear-gradient(140deg, rgba(255, 255, 255, 0.26), transparent 40%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.1));
+  }
+
+  .award-certificate-image {
+    @apply block w-full border-2 border-black bg-white;
+    height: auto;
+  }
+
+  .award-detail-item {
+    @apply border-t-2 border-white/10 pt-4 first:border-t-0 first:pt-0;
+  }
+
+  .award-detail-label {
+    @apply text-xs uppercase tracking-[0.14em] text-p5yellow sm:text-sm;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+  }
+
+  .award-detail-panel {
+    @apply mt-2 border-[3px] border-black bg-paper px-4 py-3 text-black;
+    clip-path: polygon(0 0, 96% 0, 100% 18%, 100% 100%, 4% 100%, 0 86%);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.34);
+  }
+
+  .award-detail-value {
+    @apply text-base leading-7 text-black sm:text-lg;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    text-shadow: none;
+  }
+
+  .award-detail-value--title {
+    @apply text-lg leading-8 sm:text-xl;
+    font-family: "P5Slab", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    text-shadow: none;
+  }
+
+  .award-summary {
+    @apply text-black text-base leading-relaxed sm:text-lg;
+    font-family: "OptimaNova", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 600;
+    text-shadow: none;
+  }
+
+  .award-summary-board {
+    @apply border-[3px] border-black bg-paper px-4 py-4 text-black;
+    clip-path: polygon(0 0, 97% 0, 100% 20%, 100% 100%, 4% 100%, 0 84%);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.34);
+  }
+
+  .award-count-chip {
+    @apply inline-flex items-center gap-2 border-2 border-black bg-p5red px-3 py-1.5 text-sm uppercase text-white;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+  }
+
+  .award-count-chip--paper {
+    @apply bg-paper text-black;
+  }
+
+  .award-count-chip--yellow {
+    @apply bg-p5yellow text-black;
+  }
+
+  .award-log-grid {
+    @apply grid gap-4 lg:grid-cols-2;
+  }
+
+  .award-log-item {
+    @apply relative overflow-hidden border-4 border-black bg-black p-5 text-white shadow-p5;
+    clip-path: polygon(0 0, 96% 0, 100% 10%, 100% 100%, 5% 100%, 0 92%);
+  }
+
+  .award-log-item::after {
+    content: "";
+    @apply pointer-events-none absolute right-4 top-0 h-4 w-20 bg-p5red;
+    transform: skewX(-25deg);
+  }
+
+  .award-log-info {
+    @apply grid gap-3;
+  }
+
+  .award-log-panel {
+    @apply border-[3px] border-black bg-paper px-4 py-3 text-black;
+    clip-path: polygon(0 0, 96% 0, 100% 16%, 100% 100%, 5% 100%, 0 84%);
+  }
+
+  .award-log-info-label {
+    color: #b10f17;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 900;
+    font-size: clamp(0.8rem, 0.12vw + 0.78rem, 0.9rem);
+    letter-spacing: 0.055em;
+    line-height: 1.08;
+    text-transform: uppercase;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.14),
+      0 1px 1px rgba(0, 0, 0, 0.18);
+  }
+
+  .award-log-meta {
+    @apply text-black;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    text-shadow: none;
+  }
+
+  .award-log-copy {
+    @apply text-black;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    text-shadow: none;
+  }
+
+  .p5-paper-card {
+    @apply border-4 border-black bg-paper text-black shadow-p5;
+    clip-path: polygon(0 0, 94% 0, 100% 9%, 100% 100%, 6% 100%, 0 91%);
+  }
+
+  .p5-red-card {
+    @apply border-4 border-black bg-p5red text-white shadow-p5;
+    clip-path: polygon(0 0, 96% 0, 100% 10%, 100% 100%, 5% 100%, 0 92%);
+  }
+
+  .p5-red-card .p5-menu {
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    font-weight: 700;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);
+  }
+
+  .p5-red-card .p5-accent {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .p5-ink-card {
+    @apply border-4 border-black bg-black text-white shadow-p5;
+    clip-path: polygon(0 0, 96% 0, 100% 10%, 100% 100%, 5% 100%, 0 92%);
+  }
+
+  .p5-menu {
+    font-family: "P5Menu", "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+  }
+
+  .p5-ui {
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+  }
+
+  .p5-accent {
+    font-family: "P5Slab", "P5SansTC", "Segoe UI", sans-serif;
+  }
+
+  .p5-display {
+    font-family: "Expose", "P5Slab", "P5SansTC", sans-serif;
+  }
+
+  .p5-regular {
+    font-family: "OptimaNova", "P5SansTC", "Segoe UI", sans-serif;
+  }
+
+  .p5-earwig {
+    font-family: "EarwigFactory", "P5Menu", "P5Ui", "Segoe UI", sans-serif;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .p5-poster {
+    font-family: "Expose", "Impact", sans-serif;
+  }
+
+  .hero-name-layout {
+    @apply relative inline-block;
+  }
+
+  .hero-name-card {
+    @apply relative isolate overflow-hidden border-4 border-black bg-black;
+    box-shadow: 14px 14px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .hero-alias-banner {
+    @apply absolute z-[11] inline-flex border-4 border-black bg-black px-5 py-2 sm:px-6 sm:py-3;
+    right: clamp(1rem, 12vw, 8rem);
+    top: clamp(4.5rem, 9vw, 6.5rem);
+    transform: skewX(-18deg) rotate(-15deg);
+    box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .hero-name-primary {
+    @apply relative inline-block whitespace-nowrap text-5xl leading-none text-white sm:text-6xl lg:text-7xl;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    transform: skewX(12deg);
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+    z-index: 1;
+  }
+
+  .hero-name-alias {
+    @apply relative inline-flex items-end gap-1 sm:gap-1.5;
+    transform: skewX(10deg);
+    z-index: 1;
+  }
+
+  .hero-name-alias-letter {
+    @apply relative inline-block text-5xl uppercase leading-none text-white sm:text-6xl lg:text-8xl;
+    font-family: "P5Menu", "P5Ui", "Segoe UI", sans-serif;
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    -webkit-text-stroke: 2px #000;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+    z-index: 1;
+  }
+
+  .hero-name-primary::before,
+  .hero-name-alias-letter::before {
+    @apply absolute left-[4px] top-[4px] text-p5red;
+    z-index: -1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .hero-name-primary::before {
+    content: attr(data-text);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-weight: 900;
+  }
+
+  .hero-name-alias-letter::before {
+    content: attr(data-letter);
+    font-family: "P5Menu", "P5Ui", "Segoe UI", sans-serif;
+    -webkit-text-stroke: 2px #000;
+  }
+
+  @media (max-width: 1023px) {
+    .p5-stage-star-orbit {
+      right: -5rem;
+      top: 7rem;
+      width: 17rem;
+      height: 17rem;
+      opacity: 0.24;
+    }
+
+    .p5-stage-orbit-star--hero {
+      width: 8rem;
+      height: 8rem;
+    }
+
+    .p5-stage-orbit-star--1,
+    .p5-stage-orbit-star--2,
+    .p5-stage-orbit-star--3,
+    .p5-stage-orbit-star--4,
+    .p5-stage-orbit-star--5,
+    .p5-stage-orbit-star--6 {
+      transform: scale(0.72);
+      transform-origin: center;
+    }
+
+    .hero-alias-banner {
+      right: 1rem;
+      top: 5rem;
+      transform: scale(0.86) skewX(-14deg) rotate(-11deg);
+      transform-origin: top right;
+    }
+  }
+
+  .intro-overlay {
+    @apply fixed inset-0 z-[90] overflow-hidden bg-p5red text-white;
+    background-image:
+      radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.08), transparent 24%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.18) 100%);
+  }
+
+  .intro-grid {
+    @apply pointer-events-none absolute inset-0 opacity-20;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-position: center bottom, center bottom;
+    background-size: 68px 68px, 68px 68px;
+    clip-path: polygon(0 72%, 100% 60%, 100% 100%, 0 100%);
+    transform: perspective(900px) rotateX(75deg) translateY(32%);
+    transform-origin: bottom;
+  }
+
+  .intro-shape {
+    @apply absolute bg-black;
+    box-shadow: 18px 18px 0 rgba(72, 0, 0, 0.45);
+  }
+
+  .intro-shape-top {
+    top: -8%;
+    left: -18%;
+    width: 70vw;
+    height: 18rem;
+    clip-path: polygon(0 18%, 78% 0, 100% 24%, 46% 62%, 0 40%);
+  }
+
+  .intro-shape-bottom {
+    right: -16%;
+    bottom: -14%;
+    width: 78vw;
+    height: 30rem;
+    clip-path: polygon(16% 6%, 100% 0, 100% 100%, 0 100%, 0 66%);
+  }
+
+  .intro-shape-side {
+    left: -18%;
+    bottom: 12%;
+    width: 44vw;
+    height: 28rem;
+    clip-path: polygon(0 18%, 64% 0, 100% 34%, 38% 100%, 0 70%);
+  }
+
+  .intro-date-cluster {
+    @apply absolute left-5 top-6 z-10 inline-flex flex-col items-start text-black sm:left-8 sm:top-8;
+  }
+
+  .intro-date-main {
+    @apply inline-block border-[5px] border-black bg-white px-4 py-2 text-5xl leading-none sm:text-7xl;
+    font-family: "P5Slab", "P5Ui", "P5SansTC", sans-serif;
+    transform: rotate(-8deg);
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.88);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.88);
+  }
+
+  .intro-date-day {
+    @apply -mt-2 inline-block border-[5px] border-black bg-white px-3 py-1 text-lg uppercase sm:text-2xl;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    transform: rotate(-10deg) translateX(10%);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.88);
+  }
+
+  .intro-rank-tag {
+    @apply absolute right-5 top-8 z-10 border-[4px] border-black bg-white px-4 py-2 text-xl uppercase text-black sm:right-8 sm:text-3xl;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .intro-stage {
+    @apply relative z-10 flex min-h-screen flex-col items-center justify-center px-5 pb-20 pt-24 sm:px-8 lg:px-16;
+  }
+
+  .intro-centerpiece {
+    @apply flex w-full max-w-6xl flex-col items-center gap-8 lg:grid lg:grid-cols-[minmax(360px,420px)_minmax(0,1fr)] lg:items-center lg:gap-12;
+  }
+
+  .intro-burst-ring {
+    @apply relative flex h-[19rem] w-[19rem] items-center justify-center sm:h-[25rem] sm:w-[25rem];
+  }
+
+  .intro-burst-lines {
+    @apply absolute inset-0 rounded-full;
+    background:
+      radial-gradient(circle, transparent 43%, rgba(0, 0, 0, 0.9) 43% 54%, transparent 54%),
+      repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 255, 255, 0) 0deg 4deg,
+        rgba(255, 22, 169, 0.95) 4deg 5.2deg,
+        rgba(255, 255, 255, 0) 5.2deg 8deg
+      );
+    filter: drop-shadow(0 0 18px rgba(255, 22, 169, 0.45));
+    animation: introSpin 18s linear infinite;
+  }
+
+  .intro-core-disc {
+    @apply relative flex h-[12rem] w-[12rem] items-center justify-center rounded-full bg-black sm:h-[15rem] sm:w-[15rem];
+    border: 10px solid rgba(0, 0, 0, 0.95);
+    box-shadow:
+      0 0 0 14px rgba(255, 255, 255, 0.14),
+      0 0 0 28px rgba(0, 0, 0, 0.15);
+  }
+
+  .intro-core-glow {
+    @apply absolute inset-3 rounded-full opacity-70;
+    background:
+      radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.2), transparent 30%),
+      radial-gradient(circle at 50% 68%, rgba(213, 18, 27, 0.9), transparent 54%);
+  }
+
+  .intro-core-mark {
+    @apply relative z-10 flex flex-col items-center gap-2 text-center;
+  }
+
+  .intro-core-symbol {
+    @apply block text-7xl leading-none text-white sm:text-8xl;
+    font-family: "P5Slab", "P5Ui", "P5SansTC", sans-serif;
+    text-shadow: 4px 4px 0 rgba(213, 18, 27, 0.7);
+  }
+
+  .intro-core-brand {
+    @apply border-2 border-black bg-white px-2 py-1 text-xs uppercase tracking-[0.08em] text-black sm:text-sm;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    transform: rotate(-6deg);
+  }
+
+  .intro-copy-shell {
+    @apply flex w-full max-w-3xl flex-col items-start gap-4 text-left;
+  }
+
+  .intro-kicker {
+    @apply inline-block border-[4px] border-black bg-p5yellow px-3 py-1 text-sm uppercase text-black sm:text-base;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    transform: rotate(-4deg);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.88);
+  }
+
+  .intro-title {
+    @apply max-w-4xl text-balance text-4xl leading-[0.92] text-white sm:text-6xl lg:text-7xl;
+    font-family: "P5Slab", "P5Ui", "P5SansTC", sans-serif;
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.75);
+  }
+
+  .intro-subtitle {
+    @apply max-w-2xl border-[5px] border-black bg-black/90 px-5 py-3 text-lg uppercase text-white sm:text-2xl;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+    transform: skewX(-12deg);
+    box-shadow: 14px 14px 0 rgba(0, 0, 0, 0.6);
+  }
+
+  .intro-cutline {
+    @apply mt-2 flex flex-wrap gap-2;
+  }
+
+  .intro-cutline span {
+    @apply inline-flex items-center justify-center border-[4px] border-black bg-white px-3 py-2 text-xl leading-none text-black sm:text-3xl;
+    font-family: "P5Slab", "P5SansTC", "Segoe UI", sans-serif;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.88);
+  }
+
+  .intro-cutline span:nth-child(1) {
+    transform: rotate(-5deg);
+  }
+
+  .intro-cutline span:nth-child(2) {
+    transform: rotate(4deg);
+  }
+
+  .intro-progress-shell {
+    @apply relative mt-10 w-full max-w-5xl border-[5px] border-black bg-black px-5 py-4 sm:px-6 sm:py-5;
+    box-shadow: 16px 16px 0 rgba(0, 0, 0, 0.7);
+  }
+
+  .intro-progress-head {
+    @apply mb-3 flex items-center justify-between gap-4;
+  }
+
+  .intro-progress-label {
+    @apply text-base uppercase text-white sm:text-lg;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+  }
+
+  .intro-progress-value {
+    @apply border-[3px] border-black bg-white px-3 py-1 text-lg text-black sm:text-2xl;
+    font-family: "P5Slab", "P5Ui", "P5SansTC", sans-serif;
+  }
+
+  .intro-progress-track {
+    @apply relative h-8 overflow-hidden border-[4px] border-white bg-[#410409] sm:h-10;
+  }
+
+  .intro-progress-fill {
+    @apply absolute inset-y-0 left-0 overflow-hidden;
+    background: linear-gradient(90deg, #f4ce4f 0%, #ff7a00 26%, #ff3a20 50%, #d5121b 100%);
+  }
+
+  .intro-progress-sheen {
+    @apply absolute inset-0;
+    background:
+      linear-gradient(115deg, transparent 24%, rgba(255, 255, 255, 0.55) 46%, transparent 65%),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.12) 0 12px,
+        rgba(0, 0, 0, 0) 12px 24px
+      );
+    animation: progressDash 0.9s linear infinite;
+  }
+
+  .intro-progress-stripes {
+    @apply absolute inset-0 opacity-45;
+    background: repeating-linear-gradient(
+      -62deg,
+      rgba(255, 255, 255, 0.1) 0 8px,
+      rgba(0, 0, 0, 0) 8px 18px
+    );
+    mix-blend-mode: screen;
+  }
+
+  .intro-progress-foot {
+    @apply mt-3 flex flex-wrap gap-3 text-xs uppercase text-white/80 sm:text-sm;
+    font-family: "P5Ui", "P5SansTC", "Segoe UI", sans-serif;
+  }
+}
+
+@keyframes introSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes progressDash {
+  from {
+    transform: translateX(-18%);
+  }
+
+  to {
+    transform: translateX(18%);
+  }
+}
+
+@keyframes stageLineDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 180px 0;
+  }
+}
+
+@keyframes stagePulse {
+  0%,
+  100% {
+    opacity: 0.14;
+  }
+
+  50% {
+    opacity: 0.24;
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitSpinReverse {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbitFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(10px) rotate(1deg);
+  }
+}
