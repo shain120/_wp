@@ -13,7 +13,6 @@ const Skills = lazy(() => import("@/components/sections/Skills"));
 const Projects = lazy(() => import("@/components/sections/Projects"));
 const Awards = lazy(() => import("@/components/sections/Awards"));
 const Contact = lazy(() => import("@/components/sections/Contact"));
-const MiniGame = lazy(() => import("@/components/sections/MiniGame"));
 
 export default function App() {
   const { navigation, hero, about, skills, projects, awards, contact, socials, brand } =
@@ -119,7 +118,6 @@ export default function App() {
           <Skills data={skills} />
           <Projects data={projects} />
           <Awards data={awards} />
-          <MiniGame />
           <Contact data={contact} socials={socials} />
         </Suspense>
       </main>

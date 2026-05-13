@@ -4,6 +4,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import GlassCard from "@/components/ui/GlassCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import type { ContactData, SocialLink } from "@/types/portfolio";
+import MiniGame from "@/components/sections/MiniGame";
 
 interface ContactProps {
   data: ContactData;
@@ -139,6 +140,8 @@ export default function Contact({ data, socials }: ContactProps) {
           </div>
         </GlassCard>
       ) : null}
+
+      <MiniGame />
 
       <GlassCard data-animate className="p5-paper-card mt-6 p-6 sm:p-7">
         <div className="border-4 border-black bg-paper p-5 text-black">
