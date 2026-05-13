@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "node deploy.mjs"
   },
   "dependencies": {
     "@fontsource/arsenal": "^5.2.7",
