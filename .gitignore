@@ -3,3 +3,6 @@ dist/
 .vite/
 preview*.log
 *.py
+
+!*.ttf
+!*.otf
